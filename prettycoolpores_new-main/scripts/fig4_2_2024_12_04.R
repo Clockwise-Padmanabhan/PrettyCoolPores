@@ -276,8 +276,8 @@ for (i in files_suppa) {
   event <- str_extract(i, "...dpsi") %>% gsub(".dpsi", "", .)
   data <- read.table(i, header = TRUE, sep="\t", strip.white=TRUE, na.strings="NA")
   colnames(data) <- c("X","dPSI", "pval")
-  sig_up_in_KO <- dplyr::filter(data, dPSI < -dpsi_suppa) %>% dplyr::filter(pval < pval_suppa)
-  sig_down_in_KO <- dplyr::filter(data, dPSI > dpsi_suppa) %>% dplyr::filter(pval < pval_suppa)
+  sig_up_in_KO <- dplyr::filter(data, dPSI < -dpsi_suppa) %>% dplyr::filter(pval < pval_suppa) #changed sign 
+  sig_down_in_KO <- dplyr::filter(data, dPSI > dpsi_suppa) %>% dplyr::filter(pval < pval_suppa) #changed sign
   df <- rbind(df, c(event, nrow(sig_up_in_KO), -nrow(sig_down_in_KO)))
 }
 
